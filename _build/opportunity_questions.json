@@ -1,0 +1,44 @@
+{
+ "_note": "Question-shaped queries derived from the 13 competitor weaknesses in research/COMPETITOR-ANALYSIS.md section 1.8. None of the pages ranking top 3 for our head terms answers these, so they are uncontested ground rather than parity. Audited by qcheck-style matching in _build/oppcheck.py.",
+ "/": [
+  "Is a casino welcome bonus actually worth taking?",
+  "How do I know a casino review site has really tested the casinos?"
+ ],
+ "/online-casinos/": [
+  "How much does an online casino session actually cost?",
+  "What is the difference between a casino that is safe and one that is licensed?"
+ ],
+ "/high-payout-casinos/": [
+  "Why does the same slot have a different RTP at different casinos?",
+  "What is build variance and how much does it cost me?"
+ ],
+ "/fast-payout-casinos/": [
+  "What is a casino withdrawal limit and how long would a big win take to pay?",
+  "Why is the first withdrawal always slower than the rest?"
+ ],
+ "/best-crypto-casinos/": [
+  "Do I pay capital gains tax on crypto gambling winnings?",
+  "Does sending crypto on the wrong network lose my deposit?"
+ ],
+ "/live-casinos/": [
+  "How much cheaper is live blackjack than slots per hour?",
+  "Are live dealer tables actually staffed in UK evening hours?"
+ ],
+ "/online-casinos/bonuses/": [
+  "What does a casino bonus cost to clear in pounds?",
+  "What is a maximum conversion cap on a casino bonus?",
+  "Is 35x on deposit plus bonus different from 35x on the bonus?"
+ ],
+ "/no-deposit-casinos/": [
+  "What are 450 free spins actually worth in pounds?",
+  "Why do free spins arrive a few at a time instead of all at once?"
+ ],
+ "/online-betting/": [
+  "How do I work out a bookmaker's margin myself?",
+  "How much does an accumulator really cost compared to singles?"
+ ],
+ "/best-sports-betting-sites/": [
+  "Are offshore bookmakers worse for UK horse racing?",
+  "What is a maximum payout cap and could it affect my winning bet?"
+ ]
+}

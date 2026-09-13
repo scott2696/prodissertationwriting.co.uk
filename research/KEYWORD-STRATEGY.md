@@ -279,3 +279,61 @@ answered affirmatively here: Best Odds Guaranteed, live streaming rights, bettin
 exchanges and spread betting. Each is answered honestly — the product is not
 offered offshore, and for racing at early prices the UK-licensed market is the
 better option. Ranking for a query does not require pretending to satisfy it.
+
+
+---
+
+## 8. Uncontested queries — the part that is meant to win
+
+Answering the 84 harvested competitor questions buys **parity**. It puts the same
+answers on the page that Racing Post, casinos.com and OLBG already have, which is
+necessary and is not an advantage.
+
+`_build/opportunity_questions.json` holds 21 question-shaped queries derived from
+the competitor weaknesses catalogued in
+[COMPETITOR-ANALYSIS.md §1.8](COMPETITOR-ANALYSIS.md) — subjects none of the
+top-three pages for our head terms covers at all. Audit with:
+
+```sh
+python3 _build/oppcheck.py
+```
+
+All 21 are answered. Nine of them were being answered only in body prose before
+this pass, which is the worst place for them: it is the differentiating material
+and it was sitting where a featured snippet or a People Also Ask box cannot reach
+it. They are now FAQ entries.
+
+| Uncontested subject | Where | Why no competitor covers it |
+|---|---|---|
+| What a bonus costs to clear, in pounds | `/online-casinos/bonuses/` | Requires modelling an offer you are paid to promote |
+| Maximum conversion caps | `/online-casinos/bonuses/` | Never in the advertisement |
+| 35x on bonus vs on deposit + bonus | `/online-casinos/bonuses/` | Doubles the cost; nobody distinguishes them |
+| RTP build variance | `/high-payout-casinos/` | Same slot, two prices — unmentioned anywhere |
+| Withdrawal caps as months-to-be-paid | `/fast-payout-casinos/` | Turns a payout claim into a liability |
+| Why the first withdrawal is slower | `/fast-payout-casinos/` | Requires having made a second one |
+| Crypto capital gains on conversion | `/best-crypto-casinos/` | Absent from every crypto casino page reviewed |
+| Wrong-network deposits | `/best-crypto-casinos/` | The most expensive mistake in crypto gambling |
+| Cost per hour: live tables vs slots | `/live-casinos/` | Argues against the higher-margin product |
+| Whether evening tables are really staffed | `/live-casinos/` | Requires sitting at them |
+| Value of a spin package in pounds | `/no-deposit-casinos/` | Spin count is the number chosen for the advert |
+| Why spins drip out daily | `/no-deposit-casinos/` | Exposes a retention mechanic |
+| Calculating a bookmaker's margin yourself | `/online-betting/` | Teaches readers to shop away from you |
+| Accumulator cost against singles | `/online-betting/` | Argues against the highest-margin bet |
+| Offshore weakness on UK racing | `/best-sports-betting-sites/` | Recommends the market they do not monetise |
+| Maximum payout caps on a winning bet | `/best-sports-betting-sites/` | A winning bet that pays less than the slip |
+| How to verify a review site has tested anything | `/` | Invites the standard back onto itself |
+
+**45 of the 129 FAQ entries on the ten money pages have no competitor analogue**
+(word-overlap below 40% against every harvested competitor question). That share
+is the measurable version of the differentiation argument — and it is highest on
+`/online-betting/` (8 of 14) and `/online-casinos/` (7 of 14), lowest on
+`/live-casinos/` (0 of 11), where casinos.com already covers the topic
+comprehensively and the differentiation is the data rather than the question.
+
+### The pattern behind the gap
+
+Almost every item above is uncontested for the same structural reason: answering
+it honestly costs the publisher money. A page paid on sign-ups will not tell you
+most bonuses are priced against you, that the spins drip out, that the racing is
+better elsewhere, or how to shop for a keener price. That is the opening, and it
+only stays open for as long as the answers here stay honest.
