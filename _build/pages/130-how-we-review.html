@@ -1,0 +1,142 @@
+<!--@
+{
+ "url": "/how-we-review/",
+ "title": "How I Review Casinos — The Method, the Weights and a Worked Example",
+ "description": "The full review methodology behind every score on this site: five weighted criteria, how each is measured, a worked example of a score, and what would make me remove a casino entirely.",
+ "h1": "How I Review Casinos",
+ "author": "daniel",
+ "published": "2026-01-18",
+ "priority": "0.8",
+ "pageType": "Article",
+ "crumbs": [["How I review casinos", "/how-we-review/"]],
+ "rg": false
+}
+@-->
+<section class="hero">
+<div class="wrap">
+<p class="eyebrow">Published in full, because a hidden method is not a method</p>
+<h1>How I Review Casinos: The Method, the Weights, the Arithmetic</h1>
+<p class="hero-lede">Every score on this site is a weighted mean of five criterion scores, and the weights are on this page. That matters for a specific reason: <strong>the build computes the score from those weights</strong>, so there is no field anywhere in this system where I can simply type the number I would like a casino to have. If I wanted to move a site up the rankings, I would have to change a criterion score and explain why &mdash; which is the whole point.</p>
+<div class="hero-stats">
+<div><span class="k">Criteria</span><span class="v">5</span></div>
+<div><span class="k">Heaviest weight</span><span class="v">Payout, 30%</span></div>
+<div><span class="k">Withdrawals timed</span><span class="v">74</span></div>
+<div><span class="k">Commission's weight</span><span class="v">Zero</span></div>
+</div>
+<div class="hero-ctas">
+<a class="btn btn-gold" href="#weights">The five weights</a>
+<a class="btn btn-ghost" href="#worked">A worked example</a>
+</div>
+<p class="hero-fine">18+. This site earns commission when you open an account through a link here. That does not affect the scores &mdash; see <a href="/about/">how the site is funded</a>.</p>
+</div>
+</section>
+
+<section class="section"><div class="wrap">
+
+<div class="answer">
+<span class="label">The short answer</span>
+<p>Five criteria, weighted: <strong>payout speed and reliability at 30%, bonus honesty at 25%, cashier and GBP banking at 20%, game range at 15%, support and account handling at 10%</strong>. Each is scored out of 10 from evidence I have gathered myself, and the headline score is their weighted mean, computed at build time. Payout is weighted heaviest because it is the criterion that determines whether the others matter at all: a casino with a beautiful lobby that does not pay you is worth nothing, and a plain one that pays in four hours is worth a lot.</p>
+</div>
+
+<div class="toc">
+<h2>On this page</h2>
+<ol>
+<li><a href="#weights">The five criteria and their weights</a></li>
+<li><a href="#measure">How each criterion is measured</a></li>
+<li><a href="#worked">A worked example</a></li>
+<li><a href="#bonus">How the bonus clearance model works</a></li>
+<li><a href="#money">Where the money comes from</a></li>
+<li><a href="#remove">What would get a casino removed</a></li>
+<li><a href="#updates">How often this is redone</a></li>
+</ol>
+</div>
+
+</div></section>
+
+<section class="section"><div class="wrap">
+
+<h2 id="weights">The five criteria and their weights</h2>
+
+<!--gen:weights-table-->
+
+<p>Those weights are used by every page on this site. Changing one here changes every score, every ranking and every schema rating in a single build &mdash; which is the safeguard that makes the method real rather than decorative.</p>
+
+<h2 id="measure">How each criterion is measured</h2>
+
+<h3>Payout speed and reliability &mdash; 30%</h3>
+<p>Measured, not asked. I request withdrawals from my own accounts and time them <strong>from pressing the button to cleared funds</strong>, never to the moment the operator marks a request &ldquo;processed&rdquo;. Each operator's score reflects its median time by method, the spread between best and worst, whether any request needed chasing, and whether the second withdrawal was materially faster than the first (it always should be, since the first triggers verification). Every request, including the bad ones, goes into <a href="/withdrawal-ledger/">the ledger</a>.</p>
+
+<h3>Bonus honesty &mdash; 25%</h3>
+<p>Not the size of the offer &mdash; what it costs. I read the full terms, extract the multiple, the base it applies to, the conversion cap and the maximum bet, and model the expected cost of clearing the first-deposit offer at 96% RTP. An operator scores well here for <em>modellable, proportionate terms</em>, and badly for a large headline attached to a requirement designed not to be met, or for terms that are not published in a form anyone could check.</p>
+
+<h3>Cashier and GBP banking &mdash; 20%</h3>
+<p>Whether pounds go in and out without conversion; how many UK-usable methods work in practice rather than in the footer graphics; minimum and maximum withdrawal limits; weekly and monthly caps; operator fees; and whether the cashier explains a failure in terms a person can act on.</p>
+
+<h3>Game range and providers &mdash; 15%</h3>
+<p>Studio count rather than game count, because game count is a catalogue number and every site resells the same catalogue. Whether the major studios are present as real feeds, the depth of the live floor, whether the games are served at their standard RTP builds, and how the lobby behaves on a phone.</p>
+
+<h3>Support and account handling &mdash; 10%</h3>
+<p>Live chat response times sampled at three times of day including out of hours, whether the first responder is a human or a script, verification turnaround from upload to confirmation, and how the account behaves when something goes wrong &mdash; which is the only part of support that actually matters.</p>
+
+<h2 id="worked">A worked example</h2>
+
+<p>Here is a complete score, built from its parts, using the current top-ranked casino:</p>
+
+<!--gen:scorecard smash-->
+
+<p>Multiply each criterion score by its weight, add them up, round to one decimal. That is the whole calculation, and it is the same calculation on every review page on this site. If you disagree with a score, you can see exactly which criterion to argue with &mdash; which is considerably more useful than disagreeing with a number that appeared from nowhere.</p>
+
+<h2 id="bonus">How the bonus clearance model works</h2>
+
+<p>The clearance figures quoted across this site come from one function, applied identically to every operator:</p>
+
+<ol>
+<li>Assume a <strong>&pound;100 first deposit</strong>.</li>
+<li>Apply the operator's own match percentage and maximum, giving the bonus.</li>
+<li>Apply the operator's own wagering base &mdash; bonus only, or deposit plus bonus.</li>
+<li>Multiply by the operator's own wagering multiple, giving required turnover.</li>
+<li>Multiply turnover by <strong>4%</strong>, the house edge of a 96% RTP slot, giving the expected cost.</li>
+<li>Subtract that cost from the bonus. The result is the net value.</li>
+</ol>
+
+<p>Two deliberate choices. The RTP assumption is 96%, which is a typical rather than a generous figure &mdash; a cut-build slot at 94% would make every offer look worse, and choosing the typical case seemed fairer than choosing the worst. And <strong>where an operator does not publish terms I can model, the row says so rather than guessing</strong>. A missing figure is honest; an invented one is not.</p>
+
+<h2 id="money">Where the money comes from</h2>
+
+<p>This site earns commission when someone opens an account through a link here. That is disclosed on every page and set out in full on the <a href="/about/">about page</a>. Three things follow from it that are worth stating on the methodology page specifically:</p>
+
+<ul>
+<li><strong>Commission is not an input to the model.</strong> It cannot be &mdash; the score is a weighted mean of five criterion scores and nothing else.</li>
+<li><strong>The highest-paying operator does not top the rankings.</strong> EvoSpin pays the most commission on this site (50%) and sits below six casinos paying less, because it has no payout record and its terms are not published in a modellable form.</li>
+<li><strong>Paid placement is labelled.</strong> One position is sold. It is marked <strong>Ad</strong> everywhere it appears, with the operator's real score shown next to it, so you can see exactly what you are being shown and why.</li>
+</ul>
+
+<h2 id="remove">What would get a casino removed</h2>
+
+<p>A score can be low. Some things are not scored, they are disqualifying:</p>
+
+<ul>
+<li><strong>Refusing to pay a legitimate withdrawal</strong>, or delaying one without explanation past a reasonable point.</li>
+<li><strong>Using bonus terms retrospectively to void a win</strong> that complied with the terms as published when it was accepted.</li>
+<li><strong>Accepting a customer who has identified themselves as self-excluded</strong>, or marketing to one.</li>
+<li><strong>Changing published terms and applying the change to offers already accepted.</strong></li>
+<li><strong>A licence that cannot be verified</strong> on the issuing regulator's register.</li>
+<li><strong>Serving games at RTP builds below those advertised</strong> in the game information panel.</li>
+</ul>
+
+<p>If you have experienced any of the above at a casino listed here, please tell me through the <a href="/contact/">contact page</a>, with whatever evidence you have. I will take it up with the operator and, if it stands up, remove them &mdash; and say so on the page rather than quietly.</p>
+
+<h2 id="updates">How often this is redone</h2>
+
+<p>The site was last reviewed on <strong>{{updated}}</strong> and the next scheduled review is <strong>{{nextreview}}</strong>. At each review: bonus terms are re-read from source, because operators change them without notice and a stale multiple corrupts every clearance figure; payout medians are updated with any new withdrawals; and licences are re-verified on the issuing registers. Between reviews, corrections are made as soon as they are confirmed, and dated.</p>
+
+<h3>Related pages</h3>
+<div class="grid grid-3">
+<a class="card link-card" href="/withdrawal-ledger/"><h3>The withdrawal ledger</h3><p>The raw payout data behind the heaviest-weighted criterion.</p></a>
+<a class="card link-card" href="/about/"><h3>About us</h3><p>Who runs this site and exactly how it is funded.</p></a>
+<a class="card link-card" href="/authors/"><h3>Our authors</h3><p>The two people who write and check everything here.</p></a>
+</div>
+
+<p>Written by <a href="/authors/#daniel-mercer">Daniel Mercer</a>, fact-checked by <a href="/authors/#priya-raman">Priya Raman</a>.</p>
+
+</div></section>

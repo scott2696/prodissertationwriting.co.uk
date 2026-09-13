@@ -1,1 +1,124 @@
-# prodissertationwriting.co.uk
+# prodissertationwriting.co.uk — PoundPlay
+
+Independent UK guide to online casinos and betting sites, built as a static site
+and served from this repo's root by GitHub Pages.
+
+## Building
+
+```sh
+python3 _build/gen_images.py    # favicons, OG card, org logo
+python3 _build/gen_avatars.py   # author monogram avatars
+python3 _build/gen_reviews.py   # writes the reviews hub + 11 review fragments
+python3 _build/build.py         # writes every page, sitemap.xml and robots.txt
+```
+
+`build.py` is the whole site generator. It reads `_build/pages/*.html` fragments —
+JSON front matter in a `<!--@ ... @-->` block, then authored body markup — and
+writes clean-URL pages at `{url}index.html`. No `.html` extensions anywhere:
+every page is a directory containing an `index.html`.
+
+Stylesheet is `assets/css/home.css` (the one `build.py` links). There is no
+second stylesheet.
+
+## Two numbers are computed, never typed
+
+* **The operator score**, from the five published weights in `WEIGHTS`.
+* **The bonus clearance cost**, from each operator's own first-deposit terms.
+
+Both appear in prose, tables and schema. Because the build derives them, they
+cannot drift out of sync with the methodology page. There is no field anywhere
+in this system where a score can simply be written by hand.
+
+## Build-time assertions
+
+The build fails rather than shipping a silent structural break:
+
+* FAQ items in markup must equal FAQ items in `FAQPage` schema
+* `<div>` tags must balance
+* exactly one `<h1>` per page
+* no unresolved `{{token}}`
+* no internal link carrying a `.html` extension
+* the sitemap must list exactly the indexable pages that were written
+* `lastmod`, `changefreq` and `priority` must be valid
+
+## Authoring a page
+
+Add a fragment to `_build/pages/`. Front matter takes `url`, `title`,
+`description`, `h1`, `author`, `crumbs`, and optionally `itemlist` (renders the
+offer table), `lbHeading`, `lbIntro`, `lbNotes`, `reviewOf`, `extraSchema`,
+`pageType`, `allAuthors`, `dataset`, and `rg: false` to suppress the
+responsible-gambling panel.
+
+Body markup uses an authoring vocabulary that `transform()` maps onto the
+template's classes — `<div class="answer">`, `<div class="callout tip|warn|note|law">`,
+`<div class="table-scroll"><table class="data">`, `<div class="toc">`,
+`<div class="faq"><details>`, `<div class="pros-cons">`, `<ol class="howto">`,
+`<div class="grid grid-3">` of `.link-card`s, `<div class="cta-band">`.
+
+Note: a `.link-card` **must** contain an `<h3>` or it will not be converted.
+
+Tokens: `{{aff:slug}}`, `{{affs:slug}}`, `{{op:slug:Field}}`, `{{score:slug}}`,
+`{{clear:slug:bonus|turnover|cost|net}}`, `{{monthyear}}`, `{{updated}}`,
+`{{nextreview}}`.
+
+Generated blocks: `<!--gen:weights-table-->`, `<!--gen:clearance-table a,b,c-->`,
+`<!--gen:compare-table a,b,c-->`, `<!--gen:compare-table-sports a,b,c-->`,
+`<!--gen:ledger-table-->`, `<!--gen:scorecard slug-->`.
+
+## Deliberate deviation from the brief
+
+**Canonicals are self-referencing, not homepage-pointing.** Pointing every
+canonical at `/` would tell Google the other 38 pages are duplicates and drop
+them from the index — the opposite of the ranking goal in the same brief. This
+was raised and confirmed before the build. Set `CANONICAL_TO_HOME = True` in
+`_build/build.py` for the literal behaviour; nothing else needs to change.
+
+## Data that must be replaced before launch
+
+`_build/operators.json` carries the tested figures for all eleven operators —
+`ledgerN`, `ledgerMedian`, `ledgerWorst`, `kycStage`, `kycDocs`, `kycHours`,
+`payoutFast`, `payoutCard`, `scores` — plus the wagering terms behind the
+clearance model (`wagering`, `d1Match`, `d1Max`, `wagerBase`, `wagerX`) and the
+overround figures quoted on the betting pages.
+
+**Every one of those is placeholder data this build was authored against and
+must be replaced with real logged measurements and real published terms before
+the site goes live.** The entire editorial position of the site is that these
+numbers were measured rather than asserted, so shipping them unverified would
+undo the thing that makes the site worth reading.
+
+Confirmed against the supplied operator sheet: names, casino/sports/crypto
+flags, commission rates and both affiliate links per operator. Welcome offers
+are as supplied for **EvoSpin**, **Spin Pin** and **Spin Kings**; the other
+eight were authored against placeholder offers and must be confirmed at each
+cashier.
+
+Prose depends on these figures in ways a find-and-replace will not catch: the
+site-wide totals (74 payouts, eleven operators, 34 crypto and 17 card requests),
+and the "two positive, seven negative" summary on the bonuses page. Change the
+data and re-read those.
+
+`images/authors/*.jpg` are drawn monograms rather than photographs, and
+**Daniel Mercer and Priya Raman are placeholder identities**. Inventing a stock
+face and a biography for a named reviewer is a false trust signal. Replace both
+the names in `AUTHORS` (in `_build/build.py`) and the images at the same paths
+and sizes (64px, 128px) with real people before launch.
+
+## Layout notes
+
+**The offer table leads the content column.** `render()` takes the table as a
+separate argument and emits it directly under the hero, above `.hero-tail`
+(lede, gauges, CTAs, badges, small print), on every viewport.
+
+**One block is reordered by viewport.** On phones the table's intro paragraph
+alone would push the first offer row past the fold, so `.lb-intro` and
+`.lb-foot` are moved below `.afl-list` under 820px. The first mobile viewport
+therefore carries the H1, the author, the fact-checker, the updated date, the
+table's H2 and its first row.
+
+**Review pages carry their CTA in the hero**, since a review has no offer table.
+
+## Internal strategy documents
+
+`research/` holds the competitor analysis, keyword strategy and SERP plan. Both
+`_build/` and `research/` are excluded from the published site in `_config.yml`.
