@@ -233,13 +233,16 @@ BRAND_TAG = "Every offer priced &middot; every payout timed"
 TAGLINE_LONG = "Every welcome offer priced in pounds &mdash; before you deposit one."
 HERO_SUB = "Casinos &middot; Bonuses &middot; Betting"
 HERO_META = ["United Kingdom &middot; Pounds sterling", "Tested from Manchester &mdash; Est. 2026"]
+DEFAULT_BADGES = ["GBP deposits &amp; withdrawals", "Withdrawal times logged",
+                  "Full T&amp;Cs read", "18+ only"]
+
 # The tick gauge along the top edge of the hero. Decorative only.
 SCALE = '<span class="scale" aria-hidden="true">' + '<i></i>' * 44 + '</span>'
 
 
 def nav_html():
     out = ['<header class="site-header"><div class="wrap">',
-           '<a class="brand" href="/"><img src="/favicon.svg" alt="%s logo" width="32" height="32">'
+           '<a class="brand" href="/"><img src="/favicon.svg" alt="%s logo" width="30" height="30">'
            '<span class="brand-lockup"><span class="brand-word">PoundPlay<span class="tld">.co.uk</span></span>'
            '<span class="brand-tag">%s</span></span></a>' % (SITE, BRAND_TAG),
            '<button class="nav-toggle" aria-label="Menu" aria-expanded="false" '
@@ -276,12 +279,17 @@ def meta_line(fm):
 
 
 def lead_html(fm, lede, extra=None):
-    """Returns (hero, tail).
+    """Returns (hero, "").
 
-    The hero carries the identity, crumbs, H1 and byline. The tail carries the
-    lede, gauges, CTAs, badges and small print, and is rendered inside .content
-    so the mobile rule can lift the offer table above it. On desktop the two
-    read as one continuous introduction.
+    Everything introductory lives in the hero, in the house template's order:
+    identity, crumbs, H1, lede, gauges, CTAs, badges, small print, byline. The
+    offer table follows immediately in .content.
+
+    The second element of the tuple is retained so render() keeps its signature;
+    it is always empty. The mobile fold is handled in home.css, which hides the
+    wordmark, gauges, CTAs and badges under 760px and clamps the lede, so the
+    first phone viewport still carries the H1, the byline, the date, the offer
+    table's H2 and its first row.
     """
     extra = extra or {}
     home = fm["url"] == "/"
@@ -339,18 +347,20 @@ def lead_html(fm, lede, extra=None):
         else:
             ctas = block
 
-    pills = extra.get("pills") or fm.get("facts") or []
+    # The template shows a row of trust badges under the hero CTAs. Pages may
+    # set their own via front-matter "facts"; any page with an offer table gets
+    # the site-wide set if it does not.
+    pills = extra.get("pills") or fm.get("facts") or (DEFAULT_BADGES if fm.get("itemlist") else [])
     badges = ('<div class="badges">' + "".join('<span class="badge">%s</span>' % p for p in pills)
               + '</div>') if pills else ""
 
     fine = '<p class="hero-fine">%s</p>' % extra["fine"] if extra.get("fine") else ""
 
-    hero = ('<section class="hero">%s<div class="wrap">\n%s\n%s%s<h1>%s</h1>\n%s\n%s</div></section>'
-            % (SCALE, meta, crumbs, lockup, fm["h1"], meta_line(fm),
-               (hero_ctas + "\n") if hero_ctas else ""))
-    tail = ('<div class="hero-tail">\n<p class="lede">%s</p>\n%s%s%s%s\n</div>'
-            % (lede, gauges, ctas, badges, fine))
-    return hero, tail
+    hero = ('<section class="hero">%s<div class="wrap">\n%s\n%s%s<h1>%s</h1>\n'
+            '<p class="lede">%s</p>\n%s%s%s%s\n%s\n</div></section>'
+            % (SCALE, meta, crumbs, lockup, fm["h1"], lede,
+               gauges, hero_ctas or ctas, badges, fine, meta_line(fm)))
+    return hero, ""
 
 
 FOOT_BLURB = ("Two people in Manchester, a spreadsheet and a lot of receipts. Every casino on this "
@@ -1045,13 +1055,41 @@ deposit limits, bank blocks, blocking software and how to self-exclude.</p>
 </div>'''
 
 
+def upd_line(fm):
+    """The template's verification strip: when the page was last reviewed, who
+    wrote and checked it, and when it is next due. Sits under the short-answer
+    snippet, where the template puts it."""
+    a = AUTHORS[fm.get("author", "team")]
+    checker = AUTHORS["priya"] if a["slug"] != "priya-raman" else AUTHORS["daniel"]
+    return ('<p class="upd">'
+            '<span><span class="dot" aria-hidden="true"></span>Last updated <strong>%s</strong></span>'
+            '<span>Written by <a href="/authors/#%s">%s</a></span>'
+            '<span>Fact-checked by <a href="/authors/#%s">%s</a></span>'
+            '<span>Next scheduled review: %s</span></p>'
+            % (UPDATED_LONG, a["slug"], a["name"], checker["slug"], checker["name"],
+               NEXT_REVIEW_LONG))
+
+
+def insert_upd(body, fm):
+    """Place the strip immediately after the first .snippet block.
+
+    Pages without a short answer get it at the top of the content instead.
+    It must never be anchored to the first H2: on pages like /authors/ the
+    first H2 sits inside a card, and the strip would land in the middle of it.
+    """
+    m = re.search(r'<div class="snippet">.*?</div>', body, re.S)
+    if m:
+        return body[:m.end()] + "\n" + upd_line(fm) + body[m.end():]
+    return upd_line(fm) + "\n" + body
+
+
 def render(fm, lede, body, extra=None, lb=""):
     hero, tail = lead_html(fm, lede, extra)
     url = DOMAIN + fm["url"]
     canonical = DOMAIN + "/" if CANONICAL_TO_HOME else url
     t, d = html.escape(fm["title"]), html.escape(fm["description"])
     robots = fm.get("robots", "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1")
-    body_cls = "home-ledger" if fm["url"] == "/" else "page-ledger"
+    body_cls = "home-instrument" if fm["url"] == "/" else "page-instrument"
     return '''<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -1088,7 +1126,7 @@ def render(fm, lede, body, extra=None, lb=""):
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/home.css">
 %s
 </head>
@@ -1152,10 +1190,10 @@ def main():
         if not lb_notice and fm.get("reviewOf"):
             lb_notice = review_notice(fm["reviewOf"])
 
-        # The offer table leads every page that has one, straight under the H1
-        # and byline. On mobile the hero's tail is reordered below it by CSS.
-        # The offer table is passed separately so render() can place it directly
-        # under the hero, above the hero's tail, on every viewport.
+        # The offer table leads every page that has one, directly under the
+        # hero. It is passed to render() separately so it always sits at the
+        # top of .content, above the page body.
+        body = insert_upd(body, fm)
         body = (body + lb_notice + RG_PANEL) if fm.get("rg", True) else (body + lb_notice)
 
         doc = resolve_tokens(render(fm, resolve_tokens(lede) or html.escape(fm["description"]),

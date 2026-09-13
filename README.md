@@ -106,15 +106,31 @@ and sizes (64px, 128px) with real people before launch.
 
 ## Layout notes
 
-**The offer table leads the content column.** `render()` takes the table as a
-separate argument and emits it directly under the hero, above `.hero-tail`
-(lede, gauges, CTAs, badges, small print), on every viewport.
+This site uses the **house template** shared with the other sites in this group:
+`.site-header` / `.hero` (with the tick `.scale`) / `.afl-list` offer table /
+`.datatable` / `.callout` / `.snippet` / `.toc` / `.faq` / `.rg` /
+`.site-footer`, set in Archivo, Inter and IBM Plex Mono over the petrol-and-brass
+palette. `assets/css/home.css` is that template's stylesheet plus one appended
+block of rules for the components this build adds on top of it — the offer
+table's proof line and labelled sponsored row, the author cards, the numbered
+how-to lists, and the computed scorecard.
 
-**One block is reordered by viewport.** On phones the table's intro paragraph
-alone would push the first offer row past the fold, so `.lb-intro` and
-`.lb-foot` are moved below `.afl-list` under 820px. The first mobile viewport
-therefore carries the H1, the author, the fact-checker, the updated date, the
-table's H2 and its first row.
+**The offer table leads the content column.** `render()` takes it as a separate
+argument and emits it at the top of `.content`, directly under the hero.
+
+**The hero carries the whole introduction**, in template order: identity strip,
+wordmark, H1, lede, gauges, CTAs, badges, small print, byline.
+
+**The mobile fold is handled by hiding, not reordering.** Under 760px the
+stylesheet hides the wordmark, tagline, identity strip, gauges, CTAs and badges,
+and clamps the lede to three lines and the small print to two. The first phone
+viewport therefore still carries the H1, the author, the fact-checker, the
+updated date, the offer table's H2 and its first row.
+
+**The `.upd` verification strip** (last updated, author, fact-checker, next
+review) is inserted after the first `.snippet`, or at the top of the content on
+pages that have no short answer. It is never anchored to the first H2 — on
+`/authors/` that H2 sits inside a card.
 
 **Review pages carry their CTA in the hero**, since a review has no offer table.
 
