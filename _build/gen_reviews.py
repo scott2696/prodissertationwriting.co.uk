@@ -1028,9 +1028,9 @@ terms at the cashier before you deposit. See the full ranking on
 HUB_FM = """<!--@
 {
  "url": "/casino-reviews/",
- "title": "Casino Reviews 2026 — Every Casino I Tested, With the Payout Data",
+ "title": "Casino Reviews UK 2026 — Every Casino I Tested, With the Payout Data",
  "description": "Honest reviews of every online casino and betting site I have tested for UK players: full scorecards, the commission I receive, timed payout records and what each site does badly.",
- "h1": "Casino Reviews",
+ "h1": "Casino Reviews UK",
  "author": "james",
  "published": "2026-03-10",
  "priority": "0.85",
@@ -1052,7 +1052,7 @@ def build_hub():
     return (HUB_FM % json.dumps([s for s in ORDER if s != "evospin"])) + """<section class="hero">
 <div class="wrap">
 <p class="eyebrow">11 reviews &middot; 74 payouts logged &middot; every score computed</p>
-<h1>Casino Reviews</h1>
+<h1>Casino Reviews UK</h1>
 <p class="hero-lede">Every operator I have tested, with the evidence attached. Each review carries the full
 five-criterion scorecard, the withdrawal timings I logged myself, the commission rate I receive from that operator,
 and a section on what the site does badly &mdash; because a review with no weaknesses in it is an advert.</p>

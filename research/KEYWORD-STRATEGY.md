@@ -101,33 +101,87 @@ BGaming, Ezugi, Playtech, Relax Gaming, Push Gaming, Authentic Gaming.
 
 ---
 
-## 4. Keyword mapping per page (title / H1 / primary target)
+## 4. Keyword mapping — every page
 
-| URL | Title tag | Primary target |
+All 39 pages, with the single keyword each one is built to rank for. Every
+primary keyword below appears in that page's title tag and its H1; the build
+was audited for this and the two pages that failed it (`/withdrawal-ledger/`
+and `/casino-reviews/`) were retitled.
+
+One keyword per page, and no keyword used as the primary target twice — that is
+what stops the cluster pages competing with each other and with the hub.
+
+### Money pages (14)
+
+| URL | Primary keyword | Secondary keywords |
 |---|---|---|
-| `/` | Best Online Casinos UK 2026 — 11 Real Money Casino Sites, Priced | best online casinos UK |
-| `/online-casinos/` | Online Casinos UK 2026 — Real Money Casino Sites, Compared by Cost | online casinos UK |
-| `/high-payout-casinos/` | Highest Payout Online Casinos UK 2026 — Best RTP Casino Sites | high payout casinos UK |
-| `/fast-payout-casinos/` | Fastest Payout Casinos UK 2026 — Instant Withdrawal Casino Sites | fast payout casinos UK |
-| `/best-crypto-casinos/` | Best Crypto Casinos UK 2026 — Bitcoin Casino Sites & Fast Payouts | best crypto casinos UK |
-| `/live-casinos/` | Best Live Casino Sites UK 2026 — Live Dealer Games & Real Tables | live casino sites UK |
-| `/online-casinos/bonuses/` | Best Casino Bonuses UK 2026 — Welcome Offers Priced in Pounds | casino bonuses UK |
-| `/no-deposit-casinos/` | No Deposit Bonus Casinos UK 2026 — Free Spins, No Deposit Needed | no deposit casinos UK |
-| `/non-gamstop-casinos/` | Non GamStop Casinos UK 2026 — Casinos Not on GamStop, Assessed Honestly | non gamstop casinos |
-| `/new-non-gamstop-casinos/` | New Non GamStop Casinos 2026 — New Sites, and Why New Is a Risk | new non gamstop casinos |
-| `/non-gamstop-casinos-with-free-spins/` | Non GamStop Casinos With Free Spins 2026 — What 450 Spins Are Worth | non gamstop free spins |
-| `/non-gamstop-betting-sites-uk/` | Betting Sites Not on GamStop UK 2026 — Odds, Payouts, What You Lose | betting sites not on gamstop |
-| `/football-betting-sites-not-on-gamstop/` | Football Betting Sites Not on GamStop 2026 — Prices and Coverage Tested | football betting not on gamstop |
-| `/best-sports-betting-sites/` | Best Sports Betting Sites UK 2026 — Bookmakers Ranked by Odds Value | best sports betting sites UK |
-| `/online-betting/` | Online Betting UK 2026 — Best Betting Sites, Odds and Free Bets | online betting UK |
-| `/payment-methods/` | UK Casino Payment Methods 2026 — Deposits, Withdrawals, Bank Blocks | casino payment methods UK |
-| `/uk-gambling-laws/` | UK Gambling Laws 2026 — What the Law Says About Players, Not Operators | UK gambling laws |
-| `/gambling-winnings-tax-uk/` | Tax on Gambling Winnings UK 2026 — Why You Pay Nothing, and When You Might | tax on gambling winnings UK |
-| `/withdrawal-ledger/` | The Withdrawal Ledger — Every Casino Payout I Have Timed | casino withdrawal times |
-| `/how-we-review/` | How I Review Casinos — The Method, the Weights and a Worked Example | casino review methodology |
-| `/responsible-gambling/` | Responsible Gambling UK — Every Tool Available, and How to Use Them | responsible gambling UK |
-| `/casino-reviews/` | Casino Reviews 2026 — Every Casino I Tested, With the Payout Data | casino reviews UK |
-| `/casino-reviews/<slug>/` | <Operator> Review 2026 — Tested With Real Money | <operator> review |
+| `/` | **best online casinos UK** | best online casinos, best online casino sites UK, top online casinos UK, real money casinos UK |
+| `/online-casinos/` | **online casinos UK** | real money casino sites UK, online casino sites, UK online casinos |
+| `/high-payout-casinos/` | **high payout casinos UK** | highest payout online casino UK, best RTP casinos, best paying casino sites UK |
+| `/fast-payout-casinos/` | **fast payout casinos UK** | instant withdrawal casinos UK, fastest paying casino sites, quick withdrawal casinos |
+| `/best-crypto-casinos/` | **best crypto casinos UK** | bitcoin casinos UK, crypto gambling sites UK, USDT casinos |
+| `/live-casinos/` | **live casino sites UK** | live dealer casinos UK, best live blackjack sites, live roulette sites UK |
+| `/online-casinos/bonuses/` | **casino bonuses UK** | best casino welcome bonus UK, casino sign up offers, casino welcome offers |
+| `/no-deposit-casinos/` | **no deposit casinos UK** | no deposit bonus UK, free spins no deposit, no deposit casino bonus |
+| `/best-sports-betting-sites/` | **best sports betting sites UK** | best betting sites UK, top bookmakers UK, best odds betting sites |
+| `/online-betting/` | **online betting UK** | online betting sites UK, best online betting sites, UK betting sites |
+| `/payment-methods/` | **casino payment methods UK** | casino deposit methods UK, gambling bank block, casino withdrawal methods |
+| `/uk-gambling-laws/` | **UK gambling laws** | is online gambling legal UK, Gambling Act 2005, UK online gambling regulation |
+| `/gambling-winnings-tax-uk/` | **tax on gambling winnings UK** | do you pay tax on gambling winnings, are casino winnings taxable UK, gambling tax UK |
+| `/withdrawal-ledger/` | **casino withdrawal times** | how long do casino withdrawals take, casino payout times UK |
+| `/how-we-review/` | **how we review casinos** | casino review methodology, casino rating criteria |
+| `/responsible-gambling/` | **responsible gambling UK** | gambling help UK, how to block gambling sites, GamStop alternatives to block |
+| `/non-gamstop-casinos/` | **non GamStop casinos** | casinos not on GamStop, non GamStop casinos UK, casinos without GamStop |
+| `/non-gamstop-betting-sites-uk/` | **betting sites not on GamStop** | non GamStop betting sites UK, bookmakers not on GamStop, non GamStop bookmakers |
+| `/new-non-gamstop-casinos/` | **new non GamStop casinos** | newest casinos not on GamStop, new non GamStop casinos UK |
+| `/non-gamstop-casinos-with-free-spins/` | **non GamStop casinos with free spins** | free spins not on GamStop, non GamStop free spins |
+| `/football-betting-sites-not-on-gamstop/` | **football betting sites not on GamStop** | football betting not on GamStop, non GamStop football betting |
+
+### Operator reviews (12)
+
+Each review owns its brand term. These are the lowest-volume and highest-intent pages on the site, and the easiest to rank.
+
+| URL | Primary keyword | Secondary keywords |
+|---|---|---|
+| `/casino-reviews/` | **casino reviews UK** | online casino reviews, honest casino reviews UK |
+| `/casino-reviews/smash/` | **Smash Casino review** | Smash Casino review UK, is Smash Casino legit, Smash Casino bonus |
+| `/casino-reviews/kingdom/` | **Kingdom Casino review** | Kingdom Casino review UK, is Kingdom Casino legit, Kingdom Casino bonus |
+| `/casino-reviews/rivo/` | **Rivo Casino review** | Rivo Casino review UK, is Rivo Casino legit, Rivo Casino bonus |
+| `/casino-reviews/tenobet/` | **TenoBet review** | TenoBet review UK, is TenoBet legit, TenoBet bonus |
+| `/casino-reviews/gambiva/` | **Gambiva Casino review** | Gambiva Casino review UK, is Gambiva Casino legit, Gambiva Casino bonus |
+| `/casino-reviews/wildzy/` | **Wildzy Casino review** | Wildzy Casino review UK, is Wildzy Casino legit, Wildzy Casino bonus |
+| `/casino-reviews/seven/` | **Seven Casino review** | Seven Casino review UK, is Seven Casino legit, Seven Casino bonus |
+| `/casino-reviews/aphrodite/` | **Aphrodite Casino review** | Aphrodite Casino review UK, is Aphrodite Casino legit, Aphrodite Casino bonus |
+| `/casino-reviews/evospin/` | **EvoSpin review** | EvoSpin review UK, is EvoSpin legit, EvoSpin bonus |
+| `/casino-reviews/spinpin/` | **Spin Pin review** | Spin Pin review UK, is Spin Pin legit, Spin Pin bonus |
+| `/casino-reviews/spinkings/` | **Spin Kings review** | Spin Kings review UK, is Spin Kings legit, Spin Kings bonus |
+
+### Support pages (7+6 legal)
+
+These carry no commercial keyword by design. They exist for E-E-A-T and for internal linking, and they are what the money pages cite when they claim a method, a disclosure or a source.
+
+| URL | Primary keyword | Secondary keywords |
+|---|---|---|
+| `/authors/` | **(brand / E-E-A-T — no commercial target)** | PoundPlay authors, casino reviewers UK |
+| `/about/` | **(brand / E-E-A-T — no commercial target)** | about PoundPlay, casino affiliate disclosure |
+| `/contact/` | **(brand / utility — no commercial target)** | contact PoundPlay |
+| `/terms/` | **(legal — intentionally no target)** | — |
+| `/privacy/` | **(legal — intentionally no target)** | — |
+| `/cookie-policy/` | **(legal — intentionally no target)** | — |
+
+### Coverage check
+
+Run this after any title or H1 change to confirm every page still carries its
+primary keyword in both places:
+
+```sh
+python3 - <<'EOF'
+import re, json, glob
+for f in sorted(glob.glob('_build/pages/*.html')):
+    fm = json.loads(re.match(r"^\s*<!--@(.*?)@-->", open(f).read(), re.S).group(1))
+    print(fm['url'], '|', fm['title'])
+EOF
+```
 
 ---
 
