@@ -125,3 +125,54 @@ Cross-market comparison shows the same template reskinned: casino.org AU swaps i
 | Crypto tax unmentioned | Worked CGT example on the crypto page |
 | Offshore racing weakness hidden | Stated plainly, with a recommendation to stay with UK books for racing |
 | Nobody argues against a bonus | Seven of ten offers modelled negative and labelled as such |
+
+
+---
+
+## 4. Head-term SERPs: who ranks, and how they title
+
+Checked September 2026, one search per money-page head term. The pattern is
+consistent enough to be a template.
+
+| Head term | Top 3 ranking pages | Their title pattern |
+|---|---|---|
+| best online casinos UK | racingpost.com, olbg.com, roger.com | "Best Online Casinos (2026): Top 70 UKGC Licensed Sites" · "Casino Sites UK \| Best & New Online Casinos September 2026" |
+| high payout casinos UK | gambling.com, next.io, casino.org | "High Paying Online Casinos UK: Highest RTP Casino Sites (2026)" · "Best Payout Online Casinos in the UK (2026) \| 98%+ RTP" |
+| fast payout casinos UK | casinobeats.com, next.io, bojoko.com | "Fast Withdrawal Casinos UK 2026 - Instant & Same Day Payout Sites" |
+| best crypto casinos UK | cardplayer.com, gamblinginsider.com, dappradar.com | "Best Crypto Casinos UK 2026 – Top Bitcoin Casinos" · "Top No-KYC Crypto Casinos" |
+| live casino sites UK | gg.co.uk, casinos.com, olbg.com | "Best Live Dealer Casinos UK for 2026" · "Live Casino Sites \| Best Live Dealer Casinos in 2026" |
+| casino bonuses UK | racingpost.com, oddschecker.com, casinos.com | "Best Casino Bonuses UK \| Top Welcome Bonus Offers for 2026" · "Best Low Wagering Casino Bonus Sites 2026" |
+| no deposit casinos UK | casino.guru, next.io, oddschecker.com | "Free Spins No Deposit Bonuses UK & Ireland (Sep 2026)" · "No Deposit Bonus UK \| Claim Your Free Bonus On Registration 2026" |
+| online betting UK | olbg.com, freebets.com, bettingsites.co.uk | "Betting Sites UK \| Compare the Best Bookmakers September 2026" |
+| best sports betting sites UK | freebets.com, bestbettingsites.co.uk, newbettingsites.uk | "Best Betting Sites UK 2026: New & Top-Rated Bookmakers" |
+
+### What the pattern is
+
+1. **Two keyword phrases per title**, separated by a pipe, colon or dash — the
+   head term first, a high-volume variant second. Almost nobody spends the title
+   on a brand promise.
+2. **A date in the title**, and increasingly a *month* rather than just a year —
+   OLBG, oddschecker and bettingsites.co.uk all run "September 2026" / "Sep 2026".
+   It is a freshness signal and a transparency signal at the same time.
+3. **A qualifier that implies work has been done**: "Ranked", "Reviewed",
+   "Compared", "Tested", "Top 70".
+4. **Numbers in the title** where there is one to use — "Top 70", "98%+ RTP",
+   "Top 10".
+
+### Sub-keywords worth taking from them
+
+Terms the ranking pages use that were not in the original brief, now worked into
+this site's headings and body: *same day payout*, *under 1 hour withdrawal*,
+*no-KYC*, *provably fair*, *Solana*, *game shows*, *Monopoly Live*,
+*Dream Catcher*, *1x wagering*, *no wagering*, *zero wagering*,
+*keep what you win*, *on registration*, *Best Odds Guaranteed*, *in-play*,
+*cash out*, *Book of 99*, *Mega Joker*.
+
+### Where this site diverges deliberately
+
+Every competitor above ranks UKGC-licensed operators. This site ranks offshore
+ones, so it cannot and does not claim "licensed", "safest" or "UKGC" as a
+selling point — those keywords appear here in headings that answer the question
+honestly ("Safest online casinos UK: why none of these is on GamStop") rather
+than as claims. That is a weaker commercial angle and a defensible one, and it
+is the only way to target those terms without lying to the reader.

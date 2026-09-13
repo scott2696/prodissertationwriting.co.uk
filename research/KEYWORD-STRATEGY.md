@@ -197,3 +197,36 @@ Descriptive and varied, never repeated verbatim site-wide:
 - to `/non-gamstop-casinos/` — "non-GamStop casinos", "what you trade away"
 - to `/responsible-gambling/` — "responsible gambling page", "blocking tools"
 - to `/authors/` — author names in every byline (site-wide, 39 pages)
+
+
+---
+
+## 6. Heading coverage rule, and how it is enforced
+
+Every keyword in `_build/target_keywords.json` must appear in a **heading** on
+its page — the title tag, the H1, an H2-H4, or a FAQ `<summary>` — not merely in
+body copy. 115 keywords across the ten money pages currently sit at **115 in a
+heading, 0 body-only, 0 missing**.
+
+Run the audit after any heading change:
+
+```sh
+python3 _build/kwcheck.py
+```
+
+It matches on normalised word sets rather than exact strings, so "best UK casino
+sites" is satisfied by a heading reading "the best UK casino sites compared" —
+but every word must appear in that one heading.
+
+### Rules followed when placing them
+
+* **Question-shaped keywords go in FAQ summaries**, where they read as questions
+  rather than as inserted phrases — and the answer is rewritten to actually
+  answer the new question. Three answers were rewritten during this pass for
+  exactly that reason.
+* **No heading repeats a content word three times**, and none runs past 95
+  characters. Two headings were split in two when they breached this.
+* **Titles carry the month and the year** via `{{monthyear}}`, which is derived
+  from `UPDATED` in `_build/build.py` — bumping the build date refreshes the
+  month in every title and H1 at once, so the date on the page is always true.
+* **No title is duplicated** across the 39 pages.
