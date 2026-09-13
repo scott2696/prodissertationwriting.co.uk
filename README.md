@@ -121,11 +121,35 @@ argument and emits it at the top of `.content`, directly under the hero.
 **The hero carries the whole introduction**, in template order: identity strip,
 wordmark, H1, lede, gauges, CTAs, badges, small print, byline.
 
-**The mobile fold is handled by hiding, not reordering.** Under 760px the
-stylesheet hides the wordmark, tagline, identity strip, gauges, CTAs and badges,
-and clamps the lede to three lines and the small print to two. The first phone
-viewport therefore still carries the H1, the author, the fact-checker, the
-updated date, the offer table's H2 and its first row.
+**The mobile fold is handled by hiding and compacting, not reordering**, and
+it is measured rather than assumed. The requirement is that the first phone
+viewport carries the H1, the byline with the update date, the offer table's H2
+and the first offer row *including its button*.
+
+Two blocks at the bottom of `home.css` do this:
+
+* `@media (max-width:760px)` hides the wordmark, tagline, identity strip,
+  gauges, hero CTAs, badges, the hero small print and the table's intro
+  paragraph; clamps the lede to two lines; reduces the H1 size so the longest
+  title on the site wraps to three lines rather than four; and compacts the
+  first offer card.
+* `@media (max-width:760px) and (max-height:660px)` handles short viewports
+  (375x553 and 360x640), additionally hiding the lede, dropping the score bar
+  and clamping the proof line to one line.
+
+Verified across all 16 pages that carry an offer table at 360x640, 375x553 and
+390x664 — 48 combinations, all passing, with at least 20px of clearance below
+the first offer button. To re-run that check, serve the site and measure the
+pages in same-origin iframes sized to those viewports; the numbers that matter
+are the bottom edge of `h1`, `.meta-line`, `#leaderboard` and
+`.afl-row .cta-btn` against the viewport height.
+
+Three things to know before editing those blocks. `.content > h2#leaderboard + p`
+in the base template carries an ID, so a plain `.lb-intro` selector loses to it.
+`.meta-line` must stay `flex-wrap:nowrap` or the text drops below the avatar and
+costs 24px. And `.afl-bonus` renders its "WELCOME OFFER" label as a block-level
+`::before`, so a `-webkit-line-clamp` there must allow three line boxes, not
+two, or the label eats one and a half-cut line bleeds under the ellipsis.
 
 **The `.upd` verification strip** (last updated, author, fact-checker, next
 review) is inserted after the first `.snippet`, or at the top of the content on

@@ -593,3 +593,135 @@ main{padding:44px 0 60px}
    items and discards the whitespace between them in the markup. Restore that
    gap in CSS rather than with &nbsp; in the HTML. */
 .upd span>strong,.upd span>a{margin-left:.4em}
+
+
+/* ==================================================================
+   Above the fold on a phone
+   ------------------------------------------------------------------
+   The requirement for this site is that the first mobile viewport
+   carries the H1, the byline with the update date, the offer table's
+   H2 and the first offer row — including its CTA.
+
+   The base template gets the ORDER right but not the BUDGET: measured
+   on a 375x553 viewport the first row began 520px down and its button
+   landed at 1050px. Everything below reclaims that space. Figures in
+   the comments are measured heights on a 375px viewport.
+   ================================================================== */
+@media (max-width:760px){
+
+  /* ---- hero: 188px reclaimed ---- */
+
+  /* The 18+ line is repeated on every offer row (.afl-tc), under the
+     table (.lb-foot), in the licensing callout, in the .rg panel and in
+     the footer, so the hero copy of it is the one that can go. */
+  .hero-fine{display:none}
+
+  /* Two lines of summary rather than three. */
+  .hero .lede{-webkit-line-clamp:2;margin-bottom:.7em}
+
+  /* Headline size is the biggest variable in the fold budget: the longest H1
+     on the site ran to four lines at the template's mobile size, which alone
+     put the first offer button below the fold. A ~10% reduction brings every
+     H1 here to three lines or fewer without truncating any of them. */
+  .hero h1{font-size:clamp(1.3rem,5.6vw,1.62rem)}
+
+  /* 91px -> ~34px. The avatar and the two author links stay; the line
+     simply stops wrapping into three rows. */
+  .meta-line{font-size:11.6px;gap:7px;padding-bottom:6px;line-height:1.35}
+  .meta-line .byline-av{width:24px;height:24px}
+
+  /* The H2 already says what the table is. The template clamps this
+     paragraph via `.content > h2#leaderboard + p`, which carries an ID and
+     therefore outranks a plain class selector — hence the long form here. */
+  .content>h2#leaderboard+p.lb-intro{display:none}
+
+  /* The byline was wrapping onto a second flex line below the avatar,
+     which cost 24px for nothing. Let the text wrap inside its own span. */
+  .meta-line{flex-wrap:nowrap}
+  .meta-line>span{min-width:0}
+
+  /* ---- the first offer card: 593px -> ~250px ---- */
+  .afl-row{padding:28px 14px 10px}
+
+  /* Category pages carry breadcrumbs that the homepage does not; without
+     this they push the first row's button ~20px below the fold. */
+  .crumbs{margin-bottom:6px}
+  .hero h1{margin-bottom:.34em}
+  main{padding-top:12px}
+  .afl-list{margin-top:10px}
+  .afl-rank{top:10px;left:14px;font-size:1.4rem}
+  .afl-head{top:12px;right:12px}
+  .afl-badge{font-size:9.2px;padding:5px 10px}
+
+  .afl-chip{width:min(146px,45vw);height:38px;margin:0 auto 4px}
+  .afl-brandname{font-size:1.02rem;margin-bottom:2px}
+
+  /* The pills repeat the licence and game count that the review page
+     carries in full; the proof line below is the part that is load-bearing. */
+  .afl-feats{display:none}
+
+  .afl-proof{font-size:11px;line-height:1.35;margin-bottom:3px}
+
+  .afl-score{margin:0 0 4px}
+  .afl-bar{height:5px;margin-bottom:4px}
+  .afl-score-lab{font-size:12.5px}
+  .afl-score-val{font-size:14.5px}
+
+  /* Offers run long ("600% total up to £10,000 casino / 250% up to £5,000
+     sports"); two lines is enough to carry the headline number above the fold
+     and the full string is on the row's review page. */
+  /* Clamped to three line boxes, not two: the "WELCOME OFFER" label is a
+     block-level ::before inside this element, so under -webkit-box it counts
+     as the first line box. Clamping to 2 left only one line for the offer
+     itself and bled a half-cut second line under the ellipsis. */
+  .afl-bonus{font-size:.93rem;padding:7px 10px;margin:0 0 6px;line-height:1.26;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+  .afl-cta{gap:4px}
+  .afl-cta .cta-btn{padding:11px 18px;font-size:15px;border-radius:10px}
+  .afl-tc{font-size:10.8px;line-height:1.3}
+
+  /* Rows after the first can breathe again — only row one has to clear
+     the fold, and a cramped list is worse to browse. */
+  .afl-row:not(:first-child){padding-top:48px}
+  .afl-row:not(:first-child) .afl-chip{height:72px;width:min(200px,58vw)}
+  .afl-row:not(:first-child) .afl-feats{display:block}
+  .afl-row:not(:first-child) .afl-bonus{font-size:1.1rem;padding:12px 14px}
+}
+
+
+/* Short viewports: iPhone SE class (375x553) and older Androids (360x640).
+   The constraint here is height, not width, so this keys off height and
+   leaves taller phones the fuller hero above. The 660px ceiling is chosen to
+   catch 360x640 while leaving 390x664 — which clears the fold comfortably
+   with the lede shown — on the block above. Measured: without this block the
+   first row's button lands ~98px below the fold on a 553px viewport. */
+@media (max-width:760px) and (max-height:660px){
+  /* The summary paragraph is the one hero element that can go: the H1 and
+     the offer table both say what the page is, and the paragraph is still
+     the first thing below the table. */
+  .hero .lede{display:none}
+
+  /* Two lines of headline rather than three. */
+  .hero h1{font-size:clamp(1.12rem,5vw,1.38rem);margin-bottom:.28em}
+
+  .hero{padding-top:10px}
+  .scale{height:8px}
+  .scale i{height:3px}
+  main{padding-top:12px}
+
+  .content>h2#leaderboard{font-size:1.1rem;margin:0 0 .26em}
+  .afl-list{margin-top:8px}
+  .afl-row{padding:24px 13px 8px}
+  .afl-chip{height:33px;margin-bottom:3px}
+  .afl-bonus{font-size:.88rem;padding:6px 9px;margin-bottom:5px;-webkit-line-clamp:3}
+  /* The proof line wraps to two lines at 360-375px; one is enough here, and
+     the full figure is repeated in the row's review page and the ledger. */
+  .afl-proof{margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:1;
+    -webkit-box-orient:vertical;overflow:hidden}
+
+  /* Score bar goes; the numeric score beside it says the same thing. */
+  .afl-bar{display:none}
+  .afl-score{margin-bottom:6px}
+  .afl-cta .cta-btn{padding:10px 16px}
+}
