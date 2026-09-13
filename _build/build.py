@@ -91,10 +91,10 @@ def gbp(n):
 
 # ---------------------------------------------------------------- people
 AUTHORS = {
- "daniel": dict(
-   name="Daniel Mercer", slug="daniel-mercer", initials="DM", profiled=True,
+ "james": dict(
+   name="James McKean", slug="james-mckean", initials="JM", profiled=True,
    role="Founder and lead reviewer",
-   photo="/images/authors/daniel-mercer.jpg",
+   photo="/images/authors/james-mckean.jpg",
    knows=["online casinos", "casino withdrawal testing", "GBP payment methods",
           "casino bonus terms", "wagering requirements", "non-GamStop casinos",
           "UK gambling regulation", "sports betting", "responsible gambling"],
@@ -105,23 +105,23 @@ AUTHORS = {
        "own pounds and time every withdrawal myself. The number I care about is "
        "not the size of the welcome offer but what it costs to clear it, so "
        "that is the number this site leads with."),
- "priya": dict(
-   name="Priya Raman", slug="priya-raman", initials="PR", profiled=True,
+ "lisa": dict(
+   name="Lisa Brown", slug="lisa-brown", initials="LB", profiled=True,
    role="Editor, regulation and compliance",
-   photo="/images/authors/priya-raman.jpg",
+   photo="/images/authors/lisa-brown.jpg",
    knows=["UK gambling law", "Gambling Act 2005", "UK Gambling Commission licence conditions",
           "GamStop", "gambling advertising rules", "bonus terms and conditions",
           "gambling taxation", "responsible gambling"],
-   bio="Priya spent eight years in financial services compliance, latterly "
+   bio="Lisa spent eight years in financial services compliance, latterly "
        "writing consumer-facing disclosures that had to survive a regulator "
        "reading them. She fact-checks every legal, tax and licensing claim on "
        "this site against the issuing register or the statute itself, and reads "
        "the full terms behind every offer before it is quoted. Nothing on this "
-       "site describes the law until Priya has signed it off."),
+       "site describes the law until Lisa has signed it off."),
  "team": dict(
    name="The PoundPlay editorial desk", slug="editorial-team", initials="PP",
    role="Editorial team",
-   photo="/images/authors/daniel-mercer.jpg",
+   photo="/images/authors/james-mckean.jpg",
    knows=["online casinos", "UK gambling", "sports betting"],
    bio="A two-person editorial desk in the UK. Every page here is written by a "
        "named person and fact-checked by the other one."),
@@ -267,7 +267,7 @@ def meta_line(fm):
     author and the update date are inside the first mobile viewport, above the
     offer table — see the mobile block in home.css."""
     a = AUTHORS[fm.get("author", "team")]
-    checker = AUTHORS["priya"] if a["slug"] != "priya-raman" else AUTHORS["daniel"]
+    checker = AUTHORS["lisa"] if a["slug"] != "lisa-brown" else AUTHORS["james"]
     return ('<div class="meta-line">'
             '<img class="byline-av" src="%s" srcset="%s 1x, %s 2x" alt="%s" '
             'width="38" height="38" loading="eager" decoding="async">'
@@ -804,9 +804,10 @@ def person(p):
     return {"@type": "Person", "@id": DOMAIN + "/#author-" + p["slug"], "name": p["name"],
             "url": DOMAIN + "/authors/" + ("#" + p["slug"] if p.get("profiled") else ""),
             "jobTitle": html.unescape(p["role"]),
+            # The @2x portrait is 256px square; the 1x beside it is 128px.
             "image": {"@type": "ImageObject", "url": DOMAIN + p["photo"].replace(".jpg", "@2x.jpg"),
                       "contentUrl": DOMAIN + p["photo"].replace(".jpg", "@2x.jpg"),
-                      "width": 128, "height": 128, "caption": p["name"]},
+                      "width": 256, "height": 256, "caption": p["name"]},
             "description": strip_tags(p["bio"]),
             "worksFor": {"@id": DOMAIN + "/#organization"}, "knowsAbout": p["knows"]}
 
@@ -845,7 +846,7 @@ def extract_howto(body, url):
 
 def schema_blocks(fm, body, url):
     a = AUTHORS[fm.get("author", "team")]
-    checker = AUTHORS["priya"] if a["slug"] != "priya-raman" else AUTHORS["daniel"]
+    checker = AUTHORS["lisa"] if a["slug"] != "lisa-brown" else AUTHORS["james"]
     org_site = {"@context": "https://schema.org", "@graph": [
       {"@type": "Organization", "@id": DOMAIN + "/#organization", "name": SITE, "url": DOMAIN,
        "logo": {"@type": "ImageObject", "@id": DOMAIN + "/#logo", "url": DOMAIN + "/images/logo.png",
@@ -856,7 +857,7 @@ def schema_blocks(fm, body, url):
                       "ledger, and every score comes from a published five-pillar model.",
        "areaServed": {"@type": "Country", "name": "United Kingdom"},
        "foundingDate": "2026", "email": "hello@prodissertationwriting.co.uk",
-       "founder": {"@id": DOMAIN + "/#author-daniel-mercer"},
+       "founder": {"@id": DOMAIN + "/#author-james-mckean"},
        "knowsAbout": ["online casinos", "casino withdrawal times", "casino bonuses",
                       "wagering requirements", "UK gambling regulation", "non-GamStop casinos",
                       "sports betting", "responsible gambling"],
@@ -881,7 +882,7 @@ def schema_blocks(fm, body, url):
     people = [person(a), person(checker)]
     if fm.get("allAuthors"):
         have = {n["@id"] for n in people}
-        for k in ("daniel", "priya"):
+        for k in ("james", "lisa"):
             n = person(AUTHORS[k])
             if n["@id"] not in have:
                 people.append(n)
@@ -1060,7 +1061,7 @@ def upd_line(fm):
     wrote and checked it, and when it is next due. Sits under the short-answer
     snippet, where the template puts it."""
     a = AUTHORS[fm.get("author", "team")]
-    checker = AUTHORS["priya"] if a["slug"] != "priya-raman" else AUTHORS["daniel"]
+    checker = AUTHORS["lisa"] if a["slug"] != "lisa-brown" else AUTHORS["james"]
     return ('<p class="upd">'
             '<span><span class="dot" aria-hidden="true"></span>Last updated <strong>%s</strong></span>'
             '<span>Written by <a href="/authors/#%s">%s</a></span>'
@@ -1230,7 +1231,7 @@ def main():
             op = OPS[fm["reviewOf"]]
             imgs.append((DOMAIN + op["logo"], "%s logo" % op["name"]))
         if fm["url"] == "/authors/":
-            for k in ("daniel", "priya"):
+            for k in ("james", "lisa"):
                 a = AUTHORS[k]
                 imgs.append((DOMAIN + a["photo"].replace(".jpg", "@2x.jpg"), a["name"]))
         seen, out = set(), []

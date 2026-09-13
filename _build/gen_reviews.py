@@ -891,7 +891,7 @@ FM = """<!--@
  "title": "%(name)s Review %%(year)s — %(titletail)s",
  "description": "%(desc)s",
  "h1": "%(name)s Review",
- "author": "daniel",
+ "author": "james",
  "published": "2026-03-1%(d)d",
  "priority": "0.75",
  "reviewOf": "%(slug)s",
@@ -1011,8 +1011,8 @@ The full disclosure is on the <a href="/about/#funding">about page</a>.</p>
 %(related)s
 </div>
 
-<p>Written by <a href="/authors/#daniel-mercer">Daniel Mercer</a>, checked by
-<a href="/authors/#priya-raman">Priya Raman</a>. Payout timings come from the
+<p>Written by <a href="/authors/#james-mckean">James McKean</a>, checked by
+<a href="/authors/#lisa-brown">Lisa Brown</a>. Payout timings come from the
 <a href="/withdrawal-ledger/">withdrawal ledger</a>. Offers and terms change &mdash; always confirm the current
 terms at the cashier before you deposit. See the full ranking on
 <a href="/">best online casinos UK</a>.</p>
@@ -1031,7 +1031,7 @@ HUB_FM = """<!--@
  "title": "Casino Reviews 2026 — Every Casino I Tested, With the Payout Data",
  "description": "Honest reviews of every online casino and betting site I have tested for UK players: full scorecards, the commission I receive, timed payout records and what each site does badly.",
  "h1": "Casino Reviews",
- "author": "daniel",
+ "author": "james",
  "published": "2026-03-10",
  "priority": "0.85",
  "crumbs": [["Casino reviews", "/casino-reviews/"]],
@@ -1105,8 +1105,8 @@ payout figure quoted in every review traces back to a request recorded in the
 <a class="card link-card" href="/how-we-review/"><h3>How I review casinos</h3><p>Weights, protocol and a worked example.</p></a>
 </div>
 
-<p>Written by <a href="/authors/#daniel-mercer">Daniel Mercer</a>, checked by
-<a href="/authors/#priya-raman">Priya Raman</a>.</p>
+<p>Written by <a href="/authors/#james-mckean">James McKean</a>, checked by
+<a href="/authors/#lisa-brown">Lisa Brown</a>.</p>
 
 </div></section>
 """ % cards
