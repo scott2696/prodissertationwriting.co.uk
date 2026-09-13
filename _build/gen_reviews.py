@@ -934,11 +934,13 @@ def build_one(slug):
     aff_token = "{{affs:%s}}" % slug if c.get("sports") else "{{aff:%s}}" % slug
     title_tail = ("Prices, Coverage and Payouts Tested" if c.get("sports")
                   else "Tested With Real Money")
-    desc = ("My %s review: %s Scored on five published weights, with %s"
-            % (op["name"],
-               op["usp"].rstrip(".") + ".",
-               ("%d timed withdrawals in the public ledger." % op["ledgerN"])
-               if op["ledgerN"] else "no payout record yet, and this page says so."))
+    # Kept under 155 characters so search engines show it whole. The USP is the
+    # first thing cut when it does not fit, because the payout count is the part
+    # no competitor description can claim.
+    tail = ("%d withdrawals timed" % op["ledgerN"]) if op["ledgerN"] else "no payout record yet"
+    desc = "%s review for UK players: %s, the bonus priced in pounds, the commission I receive, and what it does badly." % (op["name"], tail)
+    if len(desc) > 155:
+        desc = "%s review: %s, the bonus priced in pounds, and what it does badly." % (op["name"], tail)
     fm = (FM % dict(slug=slug, name=op["name"], titletail=title_tail,
                     desc=desc.replace('"', "'"), d=c["rank"] % 10)) % dict(year="2026")
 
@@ -1029,7 +1031,7 @@ HUB_FM = """<!--@
 {
  "url": "/casino-reviews/",
  "title": "Casino Reviews UK 2026 — Every Casino I Tested, With the Payout Data",
- "description": "Honest reviews of every online casino and betting site I have tested for UK players: full scorecards, the commission I receive, timed payout records and what each site does badly.",
+ "description": "Every casino and betting site I have tested for UK players: full scorecards, the commission I receive, timed payouts, and what each one does badly.",
  "h1": "Casino Reviews UK",
  "author": "james",
  "published": "2026-03-10",

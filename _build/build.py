@@ -262,6 +262,15 @@ def nav_html():
     return "".join(out)
 
 
+def author_href(p):
+    """Link to a profile anchor only where a profile actually exists.
+
+    The editorial-desk byline used on the legal and company pages is not a
+    profiled person, so appending "#editorial-team" produced a fragment that
+    matches nothing on /authors/ and simply fails to jump."""
+    return "/authors/" + ("#" + p["slug"] if p.get("profiled") else "")
+
+
 def meta_line(fm):
     """The byline strip. Sits directly under the H1 inside the hero so that the
     author and the update date are inside the first mobile viewport, above the
@@ -271,11 +280,11 @@ def meta_line(fm):
     return ('<div class="meta-line">'
             '<img class="byline-av" src="%s" srcset="%s 1x, %s 2x" alt="%s" '
             'width="38" height="38" loading="eager" decoding="async">'
-            '<span>Written by <a href="/authors/#%s">%s</a> &middot; '
-            'Fact-checked by <a href="/authors/#%s">%s</a> &middot; '
+            '<span>Written by <a href="%s">%s</a> &middot; '
+            'Fact-checked by <a href="%s">%s</a> &middot; '
             '<time datetime="%s">Updated %s</time></span></div>'
             % (a["photo"], a["photo"], a["photo"].replace(".jpg", "@2x.jpg"), a["name"],
-               a["slug"], a["name"], checker["slug"], checker["name"], UPDATED, UPDATED_LONG))
+               author_href(a), a["name"], author_href(checker), checker["name"], UPDATED, UPDATED_LONG))
 
 
 def lead_html(fm, lede, extra=None):
@@ -1068,10 +1077,10 @@ def upd_line(fm):
     checker = AUTHORS["lisa"] if a["slug"] != "lisa-brown" else AUTHORS["james"]
     return ('<p class="upd">'
             '<span><span class="dot" aria-hidden="true"></span>Last updated <strong>%s</strong></span>'
-            '<span>Written by <a href="/authors/#%s">%s</a></span>'
-            '<span>Fact-checked by <a href="/authors/#%s">%s</a></span>'
+            '<span>Written by <a href="%s">%s</a></span>'
+            '<span>Fact-checked by <a href="%s">%s</a></span>'
             '<span>Next scheduled review: %s</span></p>'
-            % (UPDATED_LONG, a["slug"], a["name"], checker["slug"], checker["name"],
+            % (UPDATED_LONG, author_href(a), a["name"], author_href(checker), checker["name"],
                NEXT_REVIEW_LONG))
 
 
@@ -1222,6 +1231,12 @@ def main():
         assert opens == closes, "%s: unbalanced <div> — %d open, %d close" % (fm["url"], opens, closes)
         assert doc.count("<h1") == 1, "%s: %d H1 tags, expected exactly 1" % (fm["url"], doc.count("<h1"))
         assert "{{" not in doc, "%s: unresolved token %s" % (fm["url"], re.search(r"\{\{[^}]*\}\}", doc).group(0))
+        # Descriptions feed the meta tag, the Open Graph and Twitter cards and the
+        # schema description. Over ~155 characters search engines truncate them,
+        # so the last clause is lost everywhere at once.
+        rendered_desc = re.search(r'<meta name="description" content="([^"]*)"', doc).group(1)
+        assert len(rendered_desc) <= 158, ("%s: description is %d characters, max 158 - %r"
+                                           % (fm["url"], len(rendered_desc), rendered_desc))
         assert ".html" not in re.sub(r'href="[^"]*\.html"', "", doc) or True
         for bad in re.findall(r'href="(/[^"]*\.html)"', doc):
             raise SystemExit("%s: internal link with .html extension: %s" % (fm["url"], bad))

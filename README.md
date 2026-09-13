@@ -39,6 +39,9 @@ The build fails rather than shipping a silent structural break:
 * no internal link carrying a `.html` extension
 * the sitemap must list exactly the indexable pages that were written
 * `lastmod`, `changefreq` and `priority` must be valid
+* every meta description must be 158 characters or fewer, because that value
+  feeds the meta tag, the Open Graph and Twitter cards and the schema
+  `description` at once — over the limit and the last clause is lost everywhere
 
 ## Authoring a page
 
