@@ -87,7 +87,12 @@ numbers were measured rather than asserted, so shipping them unverified would
 undo the thing that makes the site worth reading.
 
 Confirmed against the supplied operator sheet: names, casino/sports/crypto
-flags, commission rates and both affiliate links per operator. Welcome offers
+flags, commission rates and both affiliate links per operator — with one
+deliberate departure. The sheet marks **EvoSpin** `sports: TRUE` with a betting
+affiliate link, but EvoSpin is treated as casino-only here, so it carries
+`sports: false` and a null `sportsLink` and appears on no betting page. A build
+assertion enforces that: listing a `sports: false` operator in a sports page's
+`itemlist`, or in a `compare-table-sports` block, fails the build. Welcome offers
 are as supplied for **EvoSpin**, **Spin Pin** and **Spin Kings**; the other
 eight were authored against placeholder offers and must be confirmed at each
 cashier.

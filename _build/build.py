@@ -587,6 +587,10 @@ def weights_table():
 
 
 def compare_table(slugs, sports=False):
+    if sports:
+        wrong = [x for x in slugs if not OPS[x].get("sports")]
+        assert not wrong, ("compare-table-sports lists casino-only operators: %s"
+                           % ", ".join(wrong))
     rows = []
     for s in slugs:
         op = OPS[s]
@@ -1182,6 +1186,15 @@ def main():
         sports = fm["url"] in ("/online-betting/", "/best-sports-betting-sites/",
                                "/non-gamstop-betting-sites-uk/",
                                "/football-betting-sites-not-on-gamstop/")
+
+        # A casino-only operator must never appear on a betting page. EvoSpin
+        # is the live example: the operator sheet marked it sports:true, but it
+        # is casino-only in practice, so it is flagged sports:false and this
+        # assertion stops it being listed on a sports page by accident later.
+        if sports and fm.get("itemlist"):
+            wrong = [x for x in fm["itemlist"] if not OPS[x].get("sports")]
+            assert not wrong, ("%s is a sports page but lists casino-only "
+                               "operators: %s" % (fm["url"], ", ".join(wrong)))
 
         lb_html = lb_notice = ""
         if fm.get("itemlist"):
