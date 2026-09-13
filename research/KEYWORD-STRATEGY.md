@@ -230,3 +230,52 @@ but every word must appear in that one heading.
   from `UPDATED` in `_build/build.py` — bumping the build date refreshes the
   month in every title and H1 at once, so the date on the page is always true.
 * **No title is duplicated** across the 39 pages.
+
+
+---
+
+## 7. SERP question coverage
+
+`_build/serp_questions.json` holds 84 questions harvested in September 2026 from
+the FAQ blocks and question-form headings of the pages ranking top three for each
+head term — racingpost.com, casinos.com, bojoko.com, fastestpayout.co.uk,
+coingape.com, bettingsites.co.uk and olbg.com. Competitor FAQ blocks are the best
+available proxy for People Also Ask, because that is where most of them are built
+from.
+
+All 84 are answered on the relevant page. Audit it with:
+
+```sh
+python3 _build/qcheck.py
+```
+
+A question counts as answered only when 70% of its content words land in a
+**single** FAQ summary, heading, paragraph, list item or table cell — loose on
+phrasing, strict on substance, so scattered words do not pass.
+
+### What the audit changed
+
+The first run scored 54 of 84. Closing the gap took two kinds of work:
+
+* **Rewording, not padding.** Eighteen existing FAQ summaries already answered a
+  question but phrased it differently — "Which casino pays out the fastest in the
+  UK?" against the searched "Which online casino has the fastest withdrawal time
+  in UK?". Those were reworded to the user's phrasing, which is what PAA matches
+  on anyway.
+* **Thirty-nine new FAQ entries** for questions genuinely unanswered, spread
+  across the ten money pages. Each one is a real answer consistent with the
+  site's position, not a restatement of the question — several say no, and the
+  betting-exchange and live-streaming answers say plainly that these operators do
+  not offer the thing being asked about.
+
+The ten money pages now carry 9 to 14 FAQ entries each, 229 site-wide, every one
+of them present in the page's `FAQPage` schema (a build assertion fails if the
+markup and schema counts diverge).
+
+### Where a competitor question was deliberately answered "no"
+
+Four of the harvested questions assume a UKGC-licensed operator and cannot be
+answered affirmatively here: Best Odds Guaranteed, live streaming rights, betting
+exchanges and spread betting. Each is answered honestly — the product is not
+offered offshore, and for racing at early prices the UK-licensed market is the
+better option. Ranking for a query does not require pretending to satisfy it.
