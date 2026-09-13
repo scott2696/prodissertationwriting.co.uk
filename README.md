@@ -172,6 +172,30 @@ pages that have no short answer. It is never anchored to the first H2 — on
 
 **Review pages carry their CTA in the hero**, since a review has no offer table.
 
+## Indexing
+
+```sh
+python3 _build/submit_index.py --status    # check the key, send nothing
+python3 _build/submit_index.py --dry-run   # show what would go, send nothing
+python3 _build/submit_index.py             # submit whatever is new
+python3 _build/submit_index.py --all       # resubmit every sitemap URL
+```
+
+`sitemap.xml` is the authoritative list of what this site wants indexed, so the
+delta between it and `_build/indexed.json` is exactly what is worth sending to
+RalfyIndex. A URL is recorded only once the API has accepted it, so a failed run
+leaves the state untouched and simply goes again. Re-running after a successful
+run is a no-op rather than a second charge.
+
+**Submission costs one credit per URL.** All 39 pages were submitted on
+13 September 2026 (39 credits). New pages added later go on the next run; there
+is no page-kind filter here because every page on this site is worth indexing.
+
+**The API key is never in this repo**, which is public and is itself the web
+root. It is read from the macOS keychain (service `ralfyindex-api`) or the
+`RALFY_API_KEY` environment variable. `_build/` is excluded from the published
+site in `_config.yml`, so neither the script nor the state file is served.
+
 ## Internal strategy documents
 
 `research/` holds the competitor analysis, keyword strategy and SERP plan. Both
